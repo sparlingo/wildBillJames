@@ -1,4 +1,4 @@
-import { db } from '$api/src/lib/db'
+import { db } from 'api/src/lib/db'
 const dotenv = require('dotenv')
 
 dotenv.config()
@@ -65,15 +65,15 @@ async function main() {
   if (!existing.length) {
     await db.post.create({
       data: {
-        title: 'Feed the Tree',
-        body: "This old man I've talked about \\ Broke his own heart, \\ Poured it in the \\ Big red tree grew up and out, \\ Throws up its leaves, \\ Spins round and round.",
+        title: 'What does this site do?',
+        body: "You signup - you pick your favorite team. Then you pick your all-time favorite players from that team, and they can play against someone else's team in a simulated game. That's it.",
       },
     })
 
     await db.post.create({
       data: {
-        title: 'Lime Tree Arbour',
-        body: 'The wind in the trees is whispering \\ Whispering low that I love her \\ She puts her hand over mine \\ Down in the lime tree arbour',
+        title: 'How do the games work?',
+        body: "For now - your lineup goes against another player's lineup based on their career stats.",
       },
     })
 
