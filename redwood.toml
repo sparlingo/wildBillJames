@@ -1,0 +1,21 @@
+# This file contains the configuration settings for your Redwood app.
+# This file is also what makes your Redwood app a Redwood app.
+# If you remove it and try to run `yarn rw dev`, you'll get an error.
+#
+# For the full list of options, see the "App Configuration: redwood.toml" doc:
+# https://redwoodjs.com/docs/app-configuration-redwood-toml
+#
+
+[web]
+  title = "Redwood Blog with RBAC"
+  port = 8910
+  apiUrl = "/.netlify/functions"
+  includeEnvironmentVariables = ['SITE_NAME', 'GOTRUE_JWT_EXP']
+[api]
+  port = 8911
+  schemaPath = "./api/db/schema.prisma"
+  includeEnvironmentVariables = ['SITE_NAME', 'NETLIFY_IDENTITY_REGISTRATION_WEBHOOK_SECRET','INCOMING_RESEED_HOOK_URL']
+[browser]
+  open = false
+[experimental]
+  esbuild = false
