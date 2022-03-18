@@ -6,6 +6,7 @@
     "@redwoodjs/api": "^0.47.0",
     "@redwoodjs/graphql-server": "^0.47.0",
     "date-fns": "^2.24.0",
-    "got": "^11.5.2"
+    "got": "^11.5.2",
+    "node-fetch": "2"
   }
 }
