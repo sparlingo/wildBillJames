@@ -1,10 +1,11 @@
 import { Box, Container, Flex, SimpleGrid, Text } from '@chakra-ui/react'
-// import Sidebar from 'src/components/Sidebar'
+import Sidebar from 'src/components/Sidebar'
 
 const BlogLayout = ({ children }) => {
   return (
     <>
       <Flex>
+        <Sidebar />
         <Container maxW="container.xl">
           <Box>
             <Text fontSize="xl" color="gray.800">
