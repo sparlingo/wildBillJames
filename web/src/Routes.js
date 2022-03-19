@@ -8,6 +8,11 @@ import HomePage from 'src/pages/HomePage'
 const Routes = () => {
   return (
     <Router>
+      <Route
+        path="/player-search"
+        page={PlayerSearchPage}
+        name="playerSearch"
+      />
       <Set wrap={BlogLayout}>
         <Route path="/" page={HomePage} name="home" prerender />
         <Route path="/about" page={AboutPage} name="about" />
@@ -72,7 +77,7 @@ const Routes = () => {
           </Private>
         </Set>
       </Set>
-      <Route notfound page={NotFoundPage} />
+      <Route notfound page={NotFoundPage} prerender />
     </Router>
   )
 }

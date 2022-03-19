@@ -34,7 +34,5 @@ export const Empty = () => {
 export const Failure = ({ error }) => <div>Error: {error.message}</div>
 
 export const Success = ({ posts }) => {
-  return posts.map((post) => (
-    <BlogPostSummary key={post.id} post={post} concise={true} />
-  ))
+  return posts.map((post) => <BlogPostSummary key={post.id} post={post} />)
 }

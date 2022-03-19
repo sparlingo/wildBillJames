@@ -3,6 +3,7 @@ import { toast } from '@redwoodjs/web/toast'
 
 import { Link, routes } from '@redwoodjs/router'
 import { useAuth } from '@redwoodjs/auth'
+import { Container } from '@chakra-ui/react'
 
 import { QUERY } from 'src/components/PostsCell'
 
@@ -64,7 +65,7 @@ const PostsList = ({ posts }) => {
   const { hasRole } = useAuth()
 
   return (
-    <div className="rw-segment rw-table-wrapper-responsive">
+    <Container>
       <table className="rw-table">
         <thead>
           <tr>
@@ -118,7 +119,7 @@ const PostsList = ({ posts }) => {
           ))}
         </tbody>
       </table>
-    </div>
+    </Container>
   )
 }
 
