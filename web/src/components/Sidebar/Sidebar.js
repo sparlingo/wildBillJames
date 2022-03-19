@@ -23,14 +23,6 @@ import {
 } from 'react-icons/fi'
 import Navigation from 'src/components/Navigation'
 
-const LinkItems = [
-  { name: 'Home', icon: FiHome },
-  { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Explore', icon: FiCompass },
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
-]
-
 const Sidebar = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
@@ -80,6 +72,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
         to={routes.home()}
         style={{ textDecoration: 'none' }}
         _focus={{ boxShadow: 'none' }}
+        activeClassName="activeLink"
+        className="link"
       >
         <Flex
           align="center"
@@ -102,6 +96,37 @@ const SidebarContent = ({ onClose, ...rest }) => {
             as={FiHome}
           />
           Home
+        </Flex>
+      </NavLink>
+      <Spacer />
+      <NavLink
+        to={routes.about()}
+        style={{ textDecoration: 'none' }}
+        _focus={{ boxShadow: 'none' }}
+        activeClassName="activeLink"
+        className="link"
+      >
+        <Flex
+          align="center"
+          p="4"
+          mx="3"
+          borderRadius="lg"
+          role="group"
+          cursor="pointer"
+          _hover={{
+            bg: 'cyan.400',
+            color: 'white',
+          }}
+        >
+          <Icon
+            mr="2"
+            fontSize="16"
+            _groupHover={{
+              color: 'white',
+            }}
+            as={FiMenu}
+          />
+          About
         </Flex>
       </NavLink>
       <Spacer />

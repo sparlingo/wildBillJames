@@ -1,4 +1,4 @@
-import { Box, Container, Flex, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Container, Flex, Text } from '@chakra-ui/react'
 import Sidebar from 'src/components/Sidebar'
 
 const BlogLayout = ({ children }) => {
