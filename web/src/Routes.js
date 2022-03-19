@@ -8,11 +8,6 @@ import HomePage from 'src/pages/HomePage'
 const Routes = () => {
   return (
     <Router>
-      <Route
-        path="/player-search"
-        page={PlayerSearchPage}
-        name="playerSearch"
-      />
       <Set wrap={BlogLayout}>
         <Route path="/" page={HomePage} name="home" prerender />
         <Route path="/about" page={AboutPage} name="about" />

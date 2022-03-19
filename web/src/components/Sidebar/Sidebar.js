@@ -6,13 +6,13 @@ import {
   Flex,
   Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
   useDisclosure,
   Spacer,
 } from '@chakra-ui/react'
+import { routes, NavLink } from '@redwoodjs/router'
 import {
   FiHome,
   FiTrendingUp,
@@ -76,11 +76,34 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
-        </NavItem>
-      ))}
+      <NavLink
+        to={routes.home()}
+        style={{ textDecoration: 'none' }}
+        _focus={{ boxShadow: 'none' }}
+      >
+        <Flex
+          align="center"
+          p="4"
+          mx="3"
+          borderRadius="lg"
+          role="group"
+          cursor="pointer"
+          _hover={{
+            bg: 'cyan.400',
+            color: 'white',
+          }}
+        >
+          <Icon
+            mr="2"
+            fontSize="16"
+            _groupHover={{
+              color: 'white',
+            }}
+            as={FiHome}
+          />
+          Home
+        </Flex>
+      </NavLink>
       <Spacer />
       <Flex alignItems="center" justifyContent="center">
         <Navigation />
@@ -91,15 +114,15 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
 const NavItem = ({ icon, children, ...rest }) => {
   return (
-    <Link
-      href="#"
+    <NavLink
+      to={routes.home()}
       style={{ textDecoration: 'none' }}
       _focus={{ boxShadow: 'none' }}
     >
       <Flex
         align="center"
         p="4"
-        mx="4"
+        mx="3"
         borderRadius="lg"
         role="group"
         cursor="pointer"
@@ -111,7 +134,7 @@ const NavItem = ({ icon, children, ...rest }) => {
       >
         {icon && (
           <Icon
-            mr="4"
+            mr="2"
             fontSize="16"
             _groupHover={{
               color: 'white',
@@ -121,7 +144,7 @@ const NavItem = ({ icon, children, ...rest }) => {
         )}
         {children}
       </Flex>
-    </Link>
+    </NavLink>
   )
 }
 

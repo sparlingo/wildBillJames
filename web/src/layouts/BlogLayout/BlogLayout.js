@@ -7,14 +7,12 @@ const BlogLayout = ({ children }) => {
       <Flex>
         <Sidebar />
         <Container maxW="container.xl">
-          <Box>
-            <Text fontSize="xl" color="gray.800">
+          <Box maxW="2xl" borderWidth="1px" borderRadius="lg" py={2}>
+            <Text fontSize="2xl" color="gray.800" centerContent>
               News
             </Text>
-          </Box>
-          <SimpleGrid columns={2} spacing={10}>
             {children}
-          </SimpleGrid>
+          </Box>
         </Container>
       </Flex>
     </>

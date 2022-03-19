@@ -11,6 +11,7 @@ const BlogPostSummary = ({ post }) => {
       alignItems="-moz-initial"
       w="100%"
       p={3}
+      bgGradient="linear(to-r, blue.200, purple.300)"
     >
       <Heading as="h4" size="md">
         {post.title}
