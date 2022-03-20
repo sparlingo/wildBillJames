@@ -1,20 +1,19 @@
-import { Box, Container, Flex, Text } from '@chakra-ui/react'
+import { Box, Container, Flex } from '@chakra-ui/react'
 import Sidebar from 'src/components/Sidebar'
+import Footer from 'src/components/Footer'
 
 const BlogLayout = ({ children }) => {
   return (
     <>
       <Flex>
         <Sidebar />
-        <Container maxW="container.xl">
+        <Container maxW="2xl">
           <Box maxW="2xl" borderWidth="1px" borderRadius="lg" py={2}>
-            <Text fontSize="2xl" color="gray.800" centerContent>
-              News
-            </Text>
             {children}
           </Box>
         </Container>
       </Flex>
+      <Footer />
     </>
   )
 }
