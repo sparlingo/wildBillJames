@@ -6732,6 +6732,13 @@ gatsby-plugin-mdx@^3.10.1:
     unist-util-remove "^1.0.3"
     unist-util-visit "^1.4.1"
 
+gatsby-plugin-netlify-identity-gotrue@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify-identity-gotrue/-/gatsby-plugin-netlify-identity-gotrue-0.3.5.tgz#b84afa41f19260b3983efe91f23dc8658663f5f2"
+  integrity sha512-4Xk8ISuaV9biqPy8oU9muh1pDuCleO0XuVT4XoTlO6ga1FA2ZfhV0Nbd5dLsYh5dSMz4QrC09CcmbcWYz6MSCA==
+  dependencies:
+    react-netlify-identity-gotrue "^0.3.5"
+
 gatsby-plugin-page-creator@^4.10.1:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-page-creator/-/gatsby-plugin-page-creator-4.10.1.tgz#6c5308daba53729225578ca67e52f117088502a5"
@@ -10583,6 +10590,11 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-netlify-identity-gotrue@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/react-netlify-identity-gotrue/-/react-netlify-identity-gotrue-0.3.5.tgz#f66fbe6c4361531d687762884ae02320da0a20cf"
+  integrity sha512-ocVyh3Z1v5PZOkFkTjpQCbi7tkBaE6zIc+Nu47vUI86vUml7ZCTFN9rBn9FvZDrdc/3DRT/qUdAiya0FPjNTHw==
 
 react-refresh@^0.9.0:
   version "0.9.0"
