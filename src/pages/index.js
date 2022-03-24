@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "gatsby"
 
 import { getUser, isLoggedIn } from "../services/auth"
+
 import Layout from '../layouts/Layout'
 
 const indexPage = () => {
@@ -23,6 +24,7 @@ const indexPage = () => {
           )}
         </p>
       </Layout>
+      
     </>
   )
 }
