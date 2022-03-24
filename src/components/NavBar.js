@@ -80,7 +80,7 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/faetures">Features </MenuItem>
         <MenuItem to="/pricing">Pricing </MenuItem>
         
-        {isLoggedIn() ? (
+        {/* {isLoggedIn() ? (
           <MenuItem onClick={event => {
               event.preventDefault()
               logout(() => navigate(`/login`))
@@ -99,7 +99,7 @@ const MenuLinks = ({ isOpen }) => {
               Create Account
             </Button>
         </MenuItem>
-        )}
+        )} */}
       </Stack>
     </Box>
   );

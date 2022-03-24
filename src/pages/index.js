@@ -1,31 +1,17 @@
 import React from 'react'
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 
-import { getUser, isLoggedIn } from "../services/auth"
+//import { getUser, isLoggedIn } from "../services/auth"
 
 import Layout from '../layouts/Layout'
 
-const indexPage = () => {
+const IndexPage = () => {
   return (
     <>
       <Layout>
-        <h1>Hello {isLoggedIn() ? getUser().name : "world"}!</h1>
-        <p>
-          {isLoggedIn() ? (
-            <>
-              You are logged in, so check your{" "}
-              <Link to="/profile">profile</Link>
-            </>
-          ) : (
-            <>
-              You should <Link to="/login">log in</Link> to see restricted
-              content
-            </>
-          )}
-        </p>
+        <h1>Main Page</h1>
       </Layout>
-      
     </>
   )
 }
- export default indexPage
+ export default IndexPage
