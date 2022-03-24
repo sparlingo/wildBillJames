@@ -1,17 +1,29 @@
 import React from 'react'
-import { Box, Text } from '@chakra-ui/react'
+import { Link } from "gatsby"
 
+import { getUser, isLoggedIn } from "../services/auth"
 import Layout from '../layouts/Layout'
 
-const IndexPage = () => {
+const indexPage = () => {
   return (
     <>
       <Layout>
-        <Box p={8}>
-          <Text fontSize='xl'>{3 + 2}</Text>
-        </Box>
+        <h1>Hello {isLoggedIn() ? getUser().name : "world"}!</h1>
+        <p>
+          {isLoggedIn() ? (
+            <>
+              You are logged in, so check your{" "}
+              <Link to="/profile">profile</Link>
+            </>
+          ) : (
+            <>
+              You should <Link to="/login">log in</Link> to see restricted
+              content
+            </>
+          )}
+        </p>
       </Layout>
     </>
   )
 }
- export default IndexPage
+ export default indexPage

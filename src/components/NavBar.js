@@ -1,7 +1,9 @@
 import React from "react"
 import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react"
+import { navigate } from "gatsby"
 
 import Logo from "./Logo"
+import { isLoggedIn, logout } from "../services/auth"
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -77,19 +79,27 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/how">How It works </MenuItem>
         <MenuItem to="/faetures">Features </MenuItem>
         <MenuItem to="/pricing">Pricing </MenuItem>
-        <MenuItem to="/signup" isLast>
-          <Button
-            size="sm"
-            rounded="md"
-            color={["purple.500", "purple.500", "white", "white"]}
-            bg={["white", "white", "purple.500", "purple.500"]}
-            _hover={{
-              bg: ["purple.100", "purple.100", "purple.600", "purple.600"]
-            }}
-          >
-            Create Account
-          </Button>
+        
+        {isLoggedIn() ? (
+          <MenuItem onClick={event => {
+              event.preventDefault()
+              logout(() => navigate(`/login`))
+            }}>Logout</MenuItem>
+        ): (
+          <MenuItem to="/signup" >
+            <Button
+              size="sm"
+              rounded="md"
+              color={["purple.500", "purple.500", "white", "white"]}
+              bg={["white", "white", "purple.500", "purple.500"]}
+              _hover={{
+                bg: ["purple.100", "purple.100", "purple.600", "purple.600"]
+              }}
+            >
+              Create Account
+            </Button>
         </MenuItem>
+        )}
       </Stack>
     </Box>
   );
