@@ -1,6 +1,14 @@
-import { supabase } from '../utils/supabaseClient'
-import { Box, Form, FormField, TextInput, Button } from 'grommet'
 import { useState } from 'react'
+import {
+  Button,
+  Input,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Container
+} from '@chakra-ui/react'
+import { supabase } from '../utils/supabaseClient'
 import { useRouter } from 'next/router'
 
 export default function Login() {
@@ -18,11 +26,15 @@ export default function Login() {
   }
 
   return (
-    <Box>
-      <Form 
+    <Container>
+      <form py={12}
         onSubmit={e => e.preventDefault()}
       >
-        <FormField label="Email">
+        <FormControl>
+          <FormLabel htmlFor="email">Email address</FormLabel>
+          <Input id="email" type="email" value="email"/>
+        </FormControl>
+        {/* <FormField label="Email">
           <TextInput 
             id="email" 
             placeholder="Enter your email..."
@@ -41,14 +53,14 @@ export default function Login() {
             value={pass}
             onChange={(e) => setPass(e.target.value)}
             />
-        </FormField>
+        </FormField> */}
         <Button
           onClick={signIn}
           type="submit" 
           primary 
           label="Submit" 
         />
-      </Form>
-    </Box>
+      </form>
+    </Container>
   )
 }

@@ -1,19 +1,23 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
-import Logout from '../components/Logout'
 import Login from '../components/Login'
-const user = supabase.auth.user()
+import Account from '../components/Account'
 
-export default function Home() {
+
+export default function HomePage() {
+  const [session, setSession] = useState(null)
+
+  useEffect(() => {
+    setSession(supabase.auth.session())
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+
   return (
-    <>
-      <h1>blah</h1>
-      { 
-        user ? <Logout /> 
-        : <Login />
-      }
-    </>
-    
+    <div >
+      {!session ? <Login /> : <Account key={session.user.id} session={session} />}
+    </div>
   )
 }

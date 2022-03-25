@@ -1,11 +1,14 @@
 import React from 'react'
-import { UserProvider } from '@supabase/supabase-auth-helpers/react'
-import { supabaseClient } from '@supabase/supabase-auth-helpers/nextjs'
+import Layout from '../components/Layout'
+import { ChakraProvider } from '@chakra-ui/react'
+
 
 export default function App({ Component, pageProps }) {
   return (
-    <UserProvider supabaseClient={supabaseClient}>
-      <Component {...pageProps} />
-    </UserProvider>
+    <ChakraProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ChakraProvider>
   )
 }
