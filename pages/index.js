@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
-import { Container } from '@chakra-ui/react'
-import Login from '../components/Login'
-import Account from '../components/Account'
+import { 
+  Container,
+  Heading,
+} from '@chakra-ui/react'
+
 
 
 export default function HomePage() {
@@ -18,7 +20,7 @@ export default function HomePage() {
 
   return (
     <Container>
-      {!session ? <Login /> : <Account key={session.user.id} session={session} />}
+      <Heading as='h1' size="2xl">Wild Bill James</Heading>
     </Container>
   )
 }
