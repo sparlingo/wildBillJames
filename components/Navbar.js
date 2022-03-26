@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react'
 import {
   Box,
-  useColorMode,
-  Switch,
-  Flex,
   Button,
-  IconButton
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  Flex,
+  IconButton,
+  Switch,
+  useColorMode,
+  useDisclosure
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { supabase } from '../utils/supabaseClient'
@@ -17,6 +23,7 @@ export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode()
   const isDark = colorMode === 'dark'
   const [display, changeDisplay] = useState('none')
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [session, setSession] = useState(null)
 
@@ -98,7 +105,8 @@ export default function Navbar() {
           icon={
             <HamburgerIcon />
           }
-          onClick={() => changeDisplay('flex')}
+          onClick={onOpen}
+          // onClick={() => changeDisplay('flex')}
           display={['flex', 'flex', 'none', 'none']}
         />
         <Switch
@@ -133,60 +141,62 @@ export default function Navbar() {
             onClick={() => changeDisplay('none')}
           />
         </Flex>
-
-        <Flex
-          flexDir="column"
-          align="center"
-        >
-          <NextLink href="/" passHref>
-            <Button
-              as="a"
-              variant="ghost"
-              aria-label="Home"
-              my={5}
-              w="100%"
-            >
-              Home
-            </Button>
-          </NextLink>
-
-          <NextLink href="/about" passHref>
-            <Button
-              as="a"
-              variant="ghost"
-              aria-label="About"
-              my={5}
-              w="100%"
-            >
-              About
-            </Button>
-          </NextLink>
-
-          <NextLink href="/contact" passHref>
-            <Button
-              as="a"
-              variant="ghost"
-              aria-label="Contact"
-              my={5}
-              w="100%"
-            >
-              Contact
-            </Button>
-          </NextLink>
-          {!session 
-            ? <NextLink href="/login" passHref>
+        <Drawer placement='right' onClose={onClose} isOpen={isOpen}>
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerHeader borderBottomWidth='1px'>Navigation</DrawerHeader>
+            <DrawerBody>
+              <NextLink href="/" passHref>
                 <Button
+                  as="a"
                   variant="ghost"
-                  aria-label="Login"
+                  aria-label="Home"
                   my={5}
                   w="100%"
                 >
-                  Login
+                  Home
                 </Button>
               </NextLink>
-            : <Logout />
-          }
-        </Flex>
+
+              <NextLink href="/about" passHref>
+                <Button
+                  as="a"
+                  variant="ghost"
+                  aria-label="About"
+                  my={5}
+                  w="100%"
+                >
+                  About
+                </Button>
+              </NextLink>
+
+              <NextLink href="/contact" passHref>
+                <Button
+                  as="a"
+                  variant="ghost"
+                  aria-label="Contact"
+                  my={5}
+                  w="100%"
+                >
+                  Contact
+                </Button>
+              </NextLink>
+              {!session 
+                ? <NextLink href="/login" passHref>
+                    <Button
+                      variant="ghost"
+                      aria-label="Login"
+                      my={5}
+                      w="100%"
+                    >
+                      Login
+                    </Button>
+                  </NextLink>
+                : <Logout />
+              }
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </Flex>
     </Box>
   )
