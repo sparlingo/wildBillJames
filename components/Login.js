@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import {
   Button,
-  Input,
+  Container,
   FormControl,
   FormLabel,
   FormErrorMessage,
   FormHelperText,
-  Container,
+  Input,
+  Heading,
   TextInput
 } from '@chakra-ui/react'
 import { supabase } from '../utils/supabaseClient'
@@ -27,14 +28,16 @@ export default function Login() {
   }
 
   return (
-    <Container>
-      <form py={12}
+    <Container maxW='container.md'>
+      <Heading as='h2' size='xl' mb={3}>Login</Heading>
+      <form my={3}
         onSubmit={e => e.preventDefault()}
       >
         <FormControl>
           <FormLabel htmlFor="email">Email address</FormLabel>
           <Input 
             id="email"
+            size="sm"
             type="email"
             placeholder="Email address"
             onChange={e => setEmail(e.target.value)}
@@ -43,6 +46,7 @@ export default function Login() {
           <FormLabel htmlFor="pass">Password</FormLabel>
           <Input
             id="pass"
+            size="sm"
             type="password"
             placeholder="Password - minimum of 6 characters"
             onChange={(e) => setPass(e.target.value)}
@@ -50,10 +54,12 @@ export default function Login() {
         </FormControl>
         <Button
           onClick={signIn}
-          type="submit" 
-          primary 
-          label="Submit" 
-        />
+          type="submit"
+          colorScheme="blue"
+          my={5}
+        >
+          Login
+        </Button>
       </form>
     </Container>
   )

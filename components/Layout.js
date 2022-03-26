@@ -1,9 +1,9 @@
 import {
   Box,
   Container,
-  VStack
+  VStack,
+  StackDivider
 } from '@chakra-ui/react'
-import NextLink from 'next/link'
 
 import Navbar from '../components/Navbar'
 
@@ -11,10 +11,15 @@ export default function Layout({ children }) {
 
   return (
     <Container>
-      <VStack>
+      <VStack
+        shouldWrapChildren
+        divider={<StackDivider borderColor='gray.200' />}
+        spacing={20}
+        align='stretch'
+      >
         <Navbar />
           {children}
-        <Box>
+        <Box w="100%" bgColor="blue.300">
           This is the footer
         </Box>
       </VStack>

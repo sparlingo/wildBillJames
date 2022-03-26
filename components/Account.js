@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel, Heading, Input } from '@chakra-ui/react'
 import { supabase } from '../utils/supabaseClient'
 
 export default function Account({ session }) {
@@ -67,26 +67,29 @@ export default function Account({ session }) {
   }
 
   return (
-    <form onSubmit={() => updateProfile({ username, website, avatar_url })}>
-      <FormControl>
-        <FormLabel htmlFor="email">Email</FormLabel>
-        <Input placeholder={session.user.email} />
-        <FormLabel htmlFor="username">Username</FormLabel>
-        <Input
-          id="username"
-          name="username"
-          placeholder={username || ''}
-          onChange={e => setUsername(e.target.value)}
-        />
-        <FormLabel htmlFor="website">Website</FormLabel>
-        <Input
-          id="website"
-          name="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
-        <Button colorScheme={'blue'}>Update Profile</Button>
-      </FormControl>
-    </form>
+    <>
+      <Heading as='h2' size='2xl' mb={3}>User Profile</Heading>
+      <form onSubmit={() => updateProfile({ username, website, avatar_url })}>
+        <FormControl>
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <Input placeholder={session.user.email} />
+          <FormLabel htmlFor="username">Username</FormLabel>
+          <Input
+            id="username"
+            name="username"
+            placeholder={username || ''}
+            onChange={e => setUsername(e.target.value)}
+          />
+          <FormLabel htmlFor="website">Website</FormLabel>
+          <Input
+            id="website"
+            name="website"
+            value={website || ''}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
+          <Button colorScheme={'blue'}>Update Profile</Button>
+        </FormControl>
+      </form>
+    </>
   )
 }

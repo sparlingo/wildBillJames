@@ -1,5 +1,5 @@
 import { supabase } from '../utils/supabaseClient'
-import { Button } from 'grommet'
+import { Button } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 
 export default function Logout() {
@@ -17,7 +17,13 @@ export default function Logout() {
   }
   return (
     <Button
-      onClick={handleLogOut}>
+      onClick={handleLogOut}
+      variant="ghost"
+      aria-label="Logout"
+      colorScheme="red"
+      my={5}
+      mx={3}
+    >
       Logout
   </Button>
   )

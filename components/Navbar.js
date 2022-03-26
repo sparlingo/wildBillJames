@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Box,
   useColorMode,
@@ -8,15 +8,28 @@ import {
   IconButton
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import { supabase } from '../utils/supabaseClient'
 import NextLink from 'next/link'
+import Logout from '../components/Logout'
 
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode()
   const isDark = colorMode === 'dark'
   const [display, changeDisplay] = useState('none')
+
+  const [session, setSession] = useState(null)
+
+  useEffect(() => {
+    setSession(supabase.auth.session())
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+
   return (
-    <Box w="100%">
+    <Box>
       <Flex
         position="fixed"
         top="1rem"
@@ -62,6 +75,19 @@ export default function Navbar() {
               Contact
             </Button>
           </NextLink>
+          {!session 
+            ? <NextLink href="/login" passHref>
+                <Button
+                  variant="ghost"
+                  aria-label="Login"
+                  my={5}
+                  w="100%"
+                >
+                  Login
+                </Button>
+              </NextLink>
+            : <Logout />
+          }
         </Flex>
 
         {/* Mobile */}
@@ -147,6 +173,19 @@ export default function Navbar() {
               Contact
             </Button>
           </NextLink>
+          {!session 
+            ? <NextLink href="/login" passHref>
+                <Button
+                  variant="ghost"
+                  aria-label="Login"
+                  my={5}
+                  w="100%"
+                >
+                  Login
+                </Button>
+              </NextLink>
+            : <Logout />
+          }
         </Flex>
       </Flex>
     </Box>

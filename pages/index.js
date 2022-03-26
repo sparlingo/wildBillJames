@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
+import { Container } from '@chakra-ui/react'
 import Login from '../components/Login'
 import Account from '../components/Account'
 
@@ -16,8 +17,8 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div >
+    <Container>
       {!session ? <Login /> : <Account key={session.user.id} session={session} />}
-    </div>
+    </Container>
   )
 }
