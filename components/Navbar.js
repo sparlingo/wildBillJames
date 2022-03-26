@@ -16,7 +16,7 @@ export default function Navbar() {
   const isDark = colorMode === 'dark'
   const [display, changeDisplay] = useState('none')
   return (
-    <Box>
+    <Box w="100%">
       <Flex
         position="fixed"
         top="1rem"

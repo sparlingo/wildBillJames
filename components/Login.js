@@ -6,7 +6,8 @@ import {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
-  Container
+  Container,
+  TextInput
 } from '@chakra-ui/react'
 import { supabase } from '../utils/supabaseClient'
 import { useRouter } from 'next/router'
@@ -32,28 +33,21 @@ export default function Login() {
       >
         <FormControl>
           <FormLabel htmlFor="email">Email address</FormLabel>
-          <Input id="email" type="email" value="email"/>
-        </FormControl>
-        {/* <FormField label="Email">
-          <TextInput 
-            id="email" 
-            placeholder="Enter your email..."
-            name="email"
+          <Input 
+            id="email"
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            />
-        </FormField>
-        <FormField label="Password">
-          <TextInput 
-            id="password"
-            placeholder="Enter a password..."
-            name="pass"
+            placeholder="Email address"
+            onChange={e => setEmail(e.target.value)}
+          />
+          
+          <FormLabel htmlFor="pass">Password</FormLabel>
+          <Input
+            id="pass"
             type="password"
-            value={pass}
+            placeholder="Password - minimum of 6 characters"
             onChange={(e) => setPass(e.target.value)}
-            />
-        </FormField> */}
+          />
+        </FormControl>
         <Button
           onClick={signIn}
           type="submit" 

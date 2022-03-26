@@ -13,9 +13,7 @@ export default function Layout({ children }) {
     <Container>
       <VStack>
         <Navbar />
-
           {children}
-
         <Box>
           This is the footer
         </Box>

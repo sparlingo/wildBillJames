@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Form, FormField, TextInput } from 'grommet'
+import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react'
 import { supabase } from '../utils/supabaseClient'
 
 export default function Account({ session }) {
@@ -67,45 +67,26 @@ export default function Account({ session }) {
   }
 
   return (
-    <Form>
-      <FormField label="Email">
-        <TextInput placeholder={session.user.email} disabled />
-      </FormField>
-      <FormField label="Name">
-        <TextInput 
-          placeholder={username || ''}
+    <form onSubmit={() => updateProfile({ username, website, avatar_url })}>
+      <FormControl>
+        <FormLabel htmlFor="email">Email</FormLabel>
+        <Input placeholder={session.user.email} />
+        <FormLabel htmlFor="username">Username</FormLabel>
+        <Input
+          id="username"
           name="username"
+          placeholder={username || ''}
           onChange={e => setUsername(e.target.value)}
         />
-      </FormField>
-      <FormField label="Website">
-    
-      </FormField>
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
+        <FormLabel htmlFor="website">Website</FormLabel>
+        <Input
           id="website"
-          type="website"
+          name="website"
           value={website || ''}
           onChange={(e) => setWebsite(e.target.value)}
         />
-      </div>
-
-      <div>
-        <button
-          className="button block primary"
-          onClick={() => updateProfile({ username, website, avatar_url })}
-          disabled={loading}
-        >
-          {loading ? 'Loading ...' : 'Update'}
-        </button>
-      </div>
-
-      <div>
-        <button className="button block" onClick={() => supabase.auth.signOut()}>
-          Sign Out
-        </button>
-      </div>
-    </Form>
+        <Button colorScheme={'blue'}>Update Profile</Button>
+      </FormControl>
+    </form>
   )
 }
