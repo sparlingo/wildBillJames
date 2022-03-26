@@ -10,7 +10,7 @@ import Navbar from '../components/Navbar'
 export default function Layout({ children }) {
 
   return (
-    <Container>
+    <Container maxW={'1680'}>
       <VStack
         shouldWrapChildren
         divider={<StackDivider borderColor='gray.200' />}
