@@ -14,12 +14,20 @@ import dynamic from 'next/dynamic'
 const ReactFrappeChart = dynamic(import('react-frappe-charts'), { ssr: false })
 
 export default function BlueJays({ seasons }) {
-
+  let years = []
+  let wins = []
+  {seasons.map(season => (
+    years.push(season.yearID)
+  ))}
+  //console.log(years)
+  {seasons.map(season => (
+    wins.push(season.W)
+  ))}
+  //console.log(wins)
   return (
     <Container>
       <Heading as='h2' size="lg">Toronto Blue Jays</Heading>
-      
-        <Table>
+        {/* <Table>
           <Thead>
             <Tr>
               <Th>Season</Th>
@@ -38,23 +46,25 @@ export default function BlueJays({ seasons }) {
             </Tr>
           ))}
           </Tbody>
-        </Table>
+        </Table> */}
       
       
-      {/* <ReactFrappeChart
+      <ReactFrappeChart
         type="line"
         colors={['#21ba45']}
         height={450}
+        axisOptions={{ xAxisMode: "tick", yAxisMode: "tick", xIsSeries: 1 }}
         data={{
-          labels: {seasons.map(id => )}
+          labels: years,
+          datasets: [{ values: wins}]
         }}
-      /> */}
+      />
     </Container>
   )
 }
 
 export const getStaticProps = async () => {
-  const { data: seasons } = await supabase.from('teams').select('*').eq('teamID', 'TOR')
+  const { data: seasons } = await supabase.from('teams').select('*').eq('teamID', 'TOR').order('yearID')
 
   return {
     props: {
