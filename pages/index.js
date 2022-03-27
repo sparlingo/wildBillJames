@@ -7,20 +7,26 @@ import {
 
 
 
-export default function HomePage() {
-  const [session, setSession] = useState(null)
-
-  useEffect(() => {
-    setSession(supabase.auth.session())
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
+export default function HomePage({franchises}) {
+  console.log(franchises)
 
   return (
     <Container>
       <Heading as='h1' size="2xl">Wild Bill James</Heading>
     </Container>
   )
+}
+
+export const getStaticProps = async () => {
+  try {
+    const { data: franchises } = await supabase.from('franchises').select('*').filter('active', 'eq', 'Y')
+    
+    return {
+      props: {
+        franchises,
+      }
+    }
+  } catch (error) {
+    return { props: { errors: error.message }}
+  }
 }

@@ -13,11 +13,32 @@ import {
 import dynamic from 'next/dynamic'
 const ReactFrappeChart = dynamic(import('react-frappe-charts'), { ssr: false })
 
-export default function TeamPage({teams}) {
-  console.log(teams[[0]].franchName)
+export default function TeamPage({franchise, seasons}) {
+  let years = []
+  let wins = []
+  {seasons.map(season => (
+    years.push(season.yearID)
+  ))}
+  {seasons.map(season => (
+    wins.push(season.W)
+  ))}
+
   return (
     <Container>
-      <Heading as='h2' size={'xl'}>{teams[[0]].franchName}</Heading>
+      <Heading as='h2' size={'xl'}>{franchise[[0]].franchName}</Heading>
+
+      <ReactFrappeChart
+        type="line"
+        title="Wins by Year"
+        xLabe
+        colors={['#21ba45']}
+        height={450}
+        axisOptions={{ xAxisMode: "tick", yAxisMode: "tick", xIsSeries: 1 }}
+        data={{
+          labels: years,
+          datasets: [{values: wins}]
+        }}
+        />
     </Container>
   )
 }
@@ -50,15 +71,18 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   try {
     const id = params?.id
-    const { data: teams } = await supabase.from('franchises').select('*').filter('id', 'eq', id)
+    const { data: franchise } = await supabase.from('franchises').select('*').filter('id', 'eq', id)
+ 
+    const franchID = franchise[[0]].franchID
+    const { data: seasons } = await supabase.from('teams').select('*').filter('franchID', 'eq', franchID).order('yearID')
 
     return { 
       props: {
-        teams,
+        franchise,
+        seasons
       }
     }
   } catch (error) {
     return { props: { errors: error.message }}
   }
-  
 }
