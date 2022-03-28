@@ -36,7 +36,7 @@ export default function Navbar() {
   }, [])
 
   return (
-    <Box>
+    <Box zIndex="100">
       <Flex
         position="fixed"
         top="1rem"

@@ -1,3 +1,5 @@
+import React from 'react'
+//import Link from 'next/link'
 import {
   AspectRatio,
   Box,
@@ -11,32 +13,25 @@ import {
   useBreakPointValue,
   useColorModeValue,
 } from '@chakra-ui/react'
-import React from 'react'
 import { FavouriteButton } from './FavoriteButton'
 import { LgDivTag } from './LgDivTag'
 
 export const TeamCard = (props) => {
   const { team, rootProps } = props
-  const { name, imageUrl, league, division, WSWin } = product
+  const { id, name, logoURL, league, division } = team
   return (
     <Stack
-      spacing={useBreakpointValue({
-        base: '4',
-        md: '5',
-      })}
+      spacing={'4'}
       {...rootProps}
     >
       <Box position="relative">
         <AspectRatio ratio={4 / 3}>
           <Image
-            src={imageUrl}
+            src={logoURL}
             alt={name}
             draggable="false"
             fallback={<Skeleton />}
-            borderRadius={useBreakpointValue({
-              base: 'md',
-              md: 'xl',
-            })}
+            borderRadius={'md'}
           />
         </AspectRatio>
         <FavouriteButton
@@ -51,25 +46,26 @@ export const TeamCard = (props) => {
           <Text fontWeight="medium" color={useColorModeValue('gray.700', 'gray.400')}>
             {name}
           </Text>
-          <LgDivTag league={lgID} division={divID} />
+          <LgDivTag league={league} division={division} />
         </Stack>
         <HStack>
-          {/* <Rating defaultValue={rating} size="sm" /> */}
           <Text fontSize="sm" color={useColorModeValue('gray.600', 'gray.400')}>
-            12 Reviews
+            12 Somethings
           </Text>
         </HStack>
       </Stack>
       <Stack align="center">
-        <Button colorScheme="blue" isFullWidth>
-          Add to cart
-        </Button>
+        <Link href={`/teams/${encodeURIComponent(id)}`} passhref>
+          <Button colorScheme="blue" isFullWidth>
+            Team History
+          </Button>
+        </Link>
         <Link
           textDecoration="underline"
           fontWeight="medium"
           color={useColorModeValue('gray.600', 'gray.400')}
         >
-          Quick shop
+          Something Else
         </Link>
       </Stack>
     </Stack>

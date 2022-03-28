@@ -1,24 +1,37 @@
-import { HStack, Text, useColorModeValue as mode } from '@chakra-ui/react'
 import React from 'react'
+import {
+  HStack,
+  Tag,
+  TagLabel,
+  useColorModeValue as mode,
+} from '@chakra-ui/react'
 
 export const LgDivTag = (props) => {
-  const { lgID, divID, rootProps } = props
-  
+  const { league, division, rootProps } = props
+  // if (league == 'NL') {
+  //   let tagColor = 'blue'
+  // } else {
+  //   let tagColor = 'red'
+  // }
+  let tagColor = 'blue'
+
   return (
     <HStack spacing="1" {...rootProps}>
-
+      <Tag
+        size="md"
+        variant="subtle"
+        colorScheme={tagColor}
+      >
+        <TagLabel>{league}</TagLabel>
+      </Tag>
+      <Tag
+        size="md"
+        variant="subtle"
+        colorScheme="gray"
+      >
+        <TagLabel>{division}</TagLabel>
+      </Tag>
     </HStack>
   )
 }
 
-const Tag = (props) => {
-  const { isWinner, children, textProps } = props
-  const ALColor = mode('red.400', 'red.700')
-  const NLColor = mode('blue.400', 'blue.700')
-  const color = isWinner ? winnerColor : defaultColor
-
-  // return (
-  //   <Text
-
-  // )
-}
